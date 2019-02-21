@@ -1,16 +1,22 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-state = { term: 'sdfasf'};
+state = { term: ''};
 
-onInputChange = () => {
-    
+onInputChange = (event) => {
+    this.setState({ term: event.target.value });
 }
+
+onFormSubmit = event => {
+    event.preventDefault();
+
+    this.props.onFormSubmit(this.state.term);
+};
 
     render() {
         return (
             <div className="search-bar ui segemnt"> 
-                <form className="ui form">
+                <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Video Search</label>
                         <input 
